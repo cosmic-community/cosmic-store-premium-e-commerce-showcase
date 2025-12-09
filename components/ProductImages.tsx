@@ -22,12 +22,18 @@ export default function ProductImages({ images }: ProductImagesProps) {
     )
   }
 
+  // Changed: Added explicit undefined check for array access
+  const selectedImage = images[selectedIndex]
+  if (!selectedImage) {
+    return null
+  }
+
   return (
     <div className="space-y-4">
       {/* Main Image */}
       <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
         <img
-          src={`${images[selectedIndex].imgix_url}?w=1200&h=768&fit=crop&auto=format,compress`}
+          src={`${selectedImage.imgix_url}?w=1200&h=768&fit=crop&auto=format,compress`}
           alt="Product"
           className="w-full h-full object-cover"
         />
