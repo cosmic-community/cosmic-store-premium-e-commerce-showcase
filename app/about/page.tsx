@@ -76,7 +76,7 @@ export default async function AboutPage() {
       )}
 
       {/* Values Section */}
-      {metadata.values && metadata.values.length > 0 && (
+      {metadata.values && Array.isArray(metadata.values) && metadata.values.length > 0 && (
         <section className="py-16">
           <div className="container">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Our Values</h2>
