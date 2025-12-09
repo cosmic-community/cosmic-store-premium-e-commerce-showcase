@@ -55,6 +55,26 @@ export interface Review extends CosmicObject {
   };
 }
 
+// Page type with typed metadata
+export interface Page extends CosmicObject {
+  type: 'pages';
+  metadata: {
+    page_title: string;
+    hero_heading?: string;
+    hero_subheading?: string;
+    hero_image?: {
+      url: string;
+      imgix_url: string;
+    };
+    content?: string;
+    mission_statement?: string;
+    values?: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+}
+
 // API response types
 export interface CosmicResponse<T> {
   objects: T[];
@@ -72,4 +92,8 @@ export function isCollection(obj: CosmicObject): obj is Collection {
 
 export function isReview(obj: CosmicObject): obj is Review {
   return obj.type === 'reviews';
+}
+
+export function isPage(obj: CosmicObject): obj is Page {
+  return obj.type === 'pages';
 }

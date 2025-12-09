@@ -139,3 +139,22 @@ export async function getAllReviews() {
     throw new Error('Failed to fetch reviews');
   }
 }
+
+// Get page by slug
+export async function getPageBySlug(slug: string) {
+  try {
+    const response = await cosmic.objects
+      .findOne({
+        type: 'pages',
+        slug
+      })
+      .props(['id', 'title', 'slug', 'metadata'])
+    
+    return response.object;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch page');
+  }
+}
